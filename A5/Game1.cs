@@ -11,6 +11,7 @@ namespace A5
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Player1 player1 = new Player1();
         
         public Game1()
         {
@@ -41,6 +42,14 @@ namespace A5
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            A5.StateManager.CreateState("Solo Game", new SoloGameState());
+            A5.StateManager.CreateState("Splash", new SplashState());
+            A5.StateManager.CreateState("Menu", new MenuState());
+            A5.StateManager.CreateState("Solo GameOver", new SoloGameOverState());
+
+            A5.StateManager.PushState("Solo Game");
+
+            player1.Load(Content);
         }
 
         /// <summary>
@@ -63,6 +72,10 @@ namespace A5
                 Exit();
 
             // TODO: Add your update logic here
+            A5.StateManager.Update(Content, gameTime);
+
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            player1.Update(deltaTime);
 
             base.Update(gameTime);
         }
@@ -76,6 +89,10 @@ namespace A5
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            A5.StateManager.Draw(spriteBatch);
+            spriteBatch.Begin();
+            player1.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
