@@ -14,11 +14,13 @@ namespace A5
     {
         bool isLoaded = false;
         SpriteFont arial = null;
+        Player1 player1 = null;
 
 
 
-        public SoloGameState() : base()
+        public SoloGameState(Game1 game) : base()
         {
+            player1 = new Player1(game);
         }
 
 
@@ -29,7 +31,11 @@ namespace A5
             {
                 isLoaded = true;
                 arial = Content.Load<SpriteFont>("Arial");
+                player1.Load(Content);
             }
+
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            player1.Update(deltaTime);
         }
 
 
@@ -37,6 +43,7 @@ namespace A5
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
+            player1.Draw(spriteBatch);
             spriteBatch.End();
         }
 
