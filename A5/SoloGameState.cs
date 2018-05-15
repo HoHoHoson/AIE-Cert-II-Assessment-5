@@ -15,12 +15,16 @@ namespace A5
         bool isLoaded = false;
         SpriteFont arial = null;
         Player1 player1 = null;
+        Texture2D background = null;
+        Game1 game = null;
+
 
 
 
         public SoloGameState(Game1 game) : base()
         {
             player1 = new Player1(game);
+            this.game = game;
         }
 
 
@@ -30,8 +34,9 @@ namespace A5
             if(isLoaded == false)
             {
                 isLoaded = true;
-                arial = Content.Load<SpriteFont>("Arial");
                 player1.Load(Content);
+                arial = Content.Load<SpriteFont>("Arial");
+                background = Content.Load<Texture2D>("SoloBackground");
             }
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -42,7 +47,8 @@ namespace A5
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+            spriteBatch.Draw(background, new Rectangle(0, 0, Game1.Instance.ScreenWidth, Game1.Instance.ScreenHeight), Color.White);
             player1.Draw(spriteBatch);
             spriteBatch.End();
         }

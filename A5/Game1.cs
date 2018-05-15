@@ -11,11 +11,25 @@ namespace A5
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        static Game1 instance;
+
+
         
+        public static Game1 Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            instance = this;
         }
 
         /// <summary>
@@ -41,12 +55,12 @@ namespace A5
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            A5.StateManager.CreateState("Solo Game", new SoloGameState(this));
-            A5.StateManager.CreateState("Splash", new SplashState());
-            A5.StateManager.CreateState("Menu", new MenuState());
-            A5.StateManager.CreateState("Solo GameOver", new SoloGameOverState());
+            StateManager.CreateState("Solo Game", new SoloGameState(this));
+            StateManager.CreateState("Splash", new SplashState());
+            StateManager.CreateState("Menu", new MenuState());
+            StateManager.CreateState("Solo GameOver", new SoloGameOverState());
 
-            A5.StateManager.PushState("Solo Game");
+            StateManager.PushState("Solo Game");
         }
 
         /// <summary>

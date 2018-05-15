@@ -13,13 +13,14 @@ namespace A5
     class Player1
     {
         Sprite playerSprite = new Sprite();
-        Game1 game1 = null;
+        public Game1 game1 = null;
+        public float acceleration = 0.0f;
 
 
 
         public Player1(Game1 game)
         {
-            this.game1 = game;
+            game1 = game;
         }
 
 
@@ -34,17 +35,34 @@ namespace A5
         public void Update(float deltaTime)
         {
             playerSprite.Update(deltaTime);
+            bool wasMovingRight = acceleration > 0f;
+            bool wasMovingLeft = acceleration < 0f;
 
             if (Keyboard.GetState().IsKeyDown(Keys.D) == true)
             {
-                playerSprite.position += new Vector2(5, 0);
+                acceleration += 2f;
+            }
+            else if (wasMovingRight == true)
+            {
+                acceleration -= 0.5f;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A) == true)
             {
-                playerSprite.position += new Vector2(-5, 0);
+                acceleration -= 2f;
+            }
+            else if (wasMovingLeft)
+            {
+                acceleration += 0.5f;
+            }
+            if ((wasMovingRight && (acceleration < 0f)) || (wasMovingLeft && (acceleration > 0f)))
+            {
+                acceleration = 0f;
             }
 
+            playerSprite.position.X += acceleration;
             playerSprite.position.X = MathHelper.Clamp(playerSprite.position.X, 0, game1.ScreenWidth - playerSprite.texture.Width);
+            acceleration = MathHelper.Clamp(acceleration, -10, 10);
+            playerSprite.position.Y = game1.ScreenHeight - playerSprite.texture.Height - 10;
         }
 
 
