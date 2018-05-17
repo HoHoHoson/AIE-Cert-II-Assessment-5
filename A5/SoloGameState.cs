@@ -17,14 +17,16 @@ namespace A5
         Player1 player1 = null;
         Texture2D background = null;
         Game1 game = null;
+        Projectiles projectiles;
 
 
 
 
         public SoloGameState(Game1 game) : base()
         {
-            player1 = new Player1(game);
             this.game = game;
+            player1 = new Player1(game);
+            projectiles = new Projectiles(game);
         }
 
 
@@ -35,12 +37,14 @@ namespace A5
             {
                 isLoaded = true;
                 player1.Load(Content);
+                projectiles.Load(Content);
                 arial = Content.Load<SpriteFont>("Arial");
                 background = Content.Load<Texture2D>("SoloBackground");
             }
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             player1.Update(deltaTime);
+            projectiles.Update(deltaTime);
         }
 
 
@@ -50,6 +54,7 @@ namespace A5
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
             spriteBatch.Draw(background, new Rectangle(0, 0, Game1.Instance.ScreenWidth, Game1.Instance.ScreenHeight), Color.White);
             player1.Draw(spriteBatch);
+            projectiles.Draw(spriteBatch);
             spriteBatch.End();
         }
 

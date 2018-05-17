@@ -12,15 +12,27 @@ namespace A5
 {
     class Player1
     {
-        Sprite playerSprite = new Sprite();
+        public Sprite playerSprite = new Sprite();
         public Game1 game1 = null;
         public float acceleration = 0.0f;
+        static Player1 instance;
+
+
+
+        public static Player1 Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
 
 
 
         public Player1(Game1 game)
         {
             game1 = game;
+            instance = this;
         }
 
 
