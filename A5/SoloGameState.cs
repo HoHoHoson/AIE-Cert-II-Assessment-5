@@ -54,7 +54,7 @@ namespace A5
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
             spriteBatch.Draw(background, new Rectangle(0, 0, Game1.Instance.ScreenWidth, Game1.Instance.ScreenHeight), Color.White);
             player1.Draw(spriteBatch);
-            projectiles.Draw(spriteBatch);
+            projectiles.Draw(spriteBatch, arial);
             spriteBatch.End();
         }
 
