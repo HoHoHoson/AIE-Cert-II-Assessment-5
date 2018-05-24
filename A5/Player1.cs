@@ -16,6 +16,7 @@ namespace A5
         public Game1 game1 = null;
         public float acceleration = 0.0f;
         static Player1 instance;
+        public Rectangle player1Rect;
 
 
 
@@ -75,6 +76,7 @@ namespace A5
             playerSprite.position.X = MathHelper.Clamp(playerSprite.position.X, 0, game1.ScreenWidth - playerSprite.texture.Width);
             acceleration = MathHelper.Clamp(acceleration, -10, 10);
             playerSprite.position.Y = game1.ScreenHeight - playerSprite.texture.Height - 10;
+            player1Rect = new Rectangle((int)(playerSprite.position.X - playerSprite.offset.X), (int)(playerSprite.position.Y - playerSprite.offset.Y), playerSprite.texture.Width, playerSprite.texture.Height);
         }
 
 

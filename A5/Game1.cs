@@ -122,5 +122,19 @@ namespace A5
                 return graphics.GraphicsDevice.Viewport.Height;
             }
         }
+
+
+
+        public bool IsColliding(Rectangle rect1, Rectangle rect2)
+        {
+            if (rect1.X + rect1.Width < rect2.X ||
+            rect1.X > rect2.X + rect2.Width ||
+            rect1.Y + rect1.Height < rect2.Y ||
+            rect1.Y > rect2.Y + rect2.Height)
+            {
+                return false;
+            }
+            else return true;
+        }
     }
 }

@@ -45,6 +45,17 @@ namespace A5
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             player1.Update(deltaTime);
             projectiles.Update(deltaTime);
+            for (int b_Asteroid = 0; b_Asteroid < projectiles.brownAsteroidPositions.Count; b_Asteroid++)
+            {
+                Vector2 position = (Vector2)projectiles.brownAsteroidPositions[b_Asteroid];
+                Vector2 velocity = (Vector2)projectiles.brownAsteroidVelocities[b_Asteroid];
+                Rectangle b_AsteroidRect = new Rectangle((int)(position.X - projectiles.brownAsteroidOffset.X), (int)(position.Y - projectiles.brownAsteroidOffset.Y), projectiles.brownAsteroid.Width, projectiles.brownAsteroid.Height);
+                if (Game1.Instance.IsColliding(b_AsteroidRect, player1.player1Rect) == true)
+                {
+                    velocity.Y = -velocity.Y;
+                    projectiles.brownAsteroidVelocities[b_Asteroid] = velocity;
+                }
+            }
         }
 
 
