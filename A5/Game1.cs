@@ -9,9 +9,9 @@ namespace A5
     /// </summary>
     public class Game1 : Game
     {
+        static Game1 instance;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        static Game1 instance;
 
 
         

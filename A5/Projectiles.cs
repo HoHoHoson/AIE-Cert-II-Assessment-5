@@ -14,25 +14,21 @@ namespace A5
 {
     class Projectiles
     {
-        Game1 game1 = null;
-        public Texture2D brownAsteroid;
+        Vector2 b_AsteroidPos = Vector2.Zero;
         public Vector2 brownAsteroidOffset = Vector2.Zero;
-        public Vector2 asteriodPos = Vector2.Zero;
-        public Vector2 asteriodVelocity = Vector2.Zero;
-        public ArrayList brownAsteroidPositions = new ArrayList();
-        public ArrayList brownAsteroidVelocities = new ArrayList();
-        Random random = new Random();
-        public float randB_AsteroidAngle = 0;
-        Vector2 B_AsteroidDirection = Vector2.Zero;
-        float spawnTimer = 0f;
-        int asteroidCount = 10;
+        public Vector2 randB_AsteroidSpawn = Vector2.Zero;
+        public Vector2 spawnVelocity = Vector2.Zero;
+        public Texture2D brownAsteroid;
+        public Rectangle b_AsteroidRect;
+        public int asteroidCount = 10;
 
 
 
-        public Projectiles(Game1 game)
-        {
-            game1 = game;
+
+        public Projectiles()
+        { 
         }
+
 
 
 
@@ -40,64 +36,30 @@ namespace A5
         {
             brownAsteroid = content.Load<Texture2D>("meteorBrown");
             brownAsteroidOffset = new Vector2(brownAsteroid.Width / 2, brownAsteroid.Height / 2);
-
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    Vector2 randB_AsteroidSpawn = new Vector2(random.Next(0 + brownAsteroid.Width, Game1.Instance.ScreenWidth - brownAsteroid.Width), 0 - brownAsteroid.Height);
-            //    brownAsteroidPositions.Add(randB_AsteroidSpawn);
-            //    double randomNumber = (float)random.NextDouble();
-            //    randB_AsteroidAngle = MathHelper.Lerp(-1.3f, +1.3f, (float)randomNumber);
-            //    B_AsteroidDirection = new Vector2(-(float)Math.Sin(randB_AsteroidAngle), (float)Math.Cos(randB_AsteroidAngle));
-            //    B_AsteroidDirection.Normalize();
-            //    Vector2 velocity = B_AsteroidDirection * 1;
-            //    brownAsteroidVelocities.Add(velocity);
-            //} 
         }
+
 
 
 
         public void Update(float deltaTime)
         {
-            if (brownAsteroidPositions.Count != asteroidCount)
+            randB_AsteroidSpawn += spawnVelocity;
+            b_AsteroidPos = randB_AsteroidSpawn;
+
+            if (b_AsteroidPos.X - brownAsteroid.Width / 2 < 0 && spawnVelocity.X < 0 || b_AsteroidPos.X + brownAsteroid.Width / 2 > Game1.Instance.ScreenWidth && spawnVelocity.X > 0)
             {
-                spawnTimer += deltaTime;
-                if (spawnTimer >= 3.0f)
-                {
-                    Vector2 randB_AsteroidSpawn = new Vector2(random.Next(0 + brownAsteroid.Width, Game1.Instance.ScreenWidth - brownAsteroid.Width), 0 - brownAsteroid.Height);
-                    brownAsteroidPositions.Add(randB_AsteroidSpawn);
-                    double randomNumber = (float)random.NextDouble();
-                    randB_AsteroidAngle = MathHelper.Lerp(-1.3f, +1.3f, (float)randomNumber);
-                    B_AsteroidDirection = new Vector2(-(float)Math.Sin(randB_AsteroidAngle), (float)Math.Cos(randB_AsteroidAngle));
-                    B_AsteroidDirection.Normalize();
-                    Vector2 velocity = B_AsteroidDirection * 1;
-                    brownAsteroidVelocities.Add(velocity);
-                    spawnTimer = 0f;
-                }
+                spawnVelocity.X = -spawnVelocity.X;
             }
 
-            for (int b_Asteroids = 0; b_Asteroids < brownAsteroidPositions.Count; b_Asteroids++)
-            {
-                Vector2 position = (Vector2)brownAsteroidPositions[b_Asteroids];
-                Vector2 velocity = (Vector2)brownAsteroidVelocities[b_Asteroids];
-                position += velocity;
-                brownAsteroidPositions[b_Asteroids] = position;
-                if (position.X - brownAsteroid.Width / 2 < 0 && velocity.X < 0 || position.X + brownAsteroid.Width / 2 > Game1.Instance.ScreenWidth && velocity.X > 0)
-                {
-                    velocity.X = -velocity.X;
-                    brownAsteroidVelocities[b_Asteroids] = velocity;
-                }
-            }
+            b_AsteroidRect = new Rectangle((int)(b_AsteroidPos.X - brownAsteroidOffset.X), (int)(b_AsteroidPos.Y - brownAsteroidOffset.Y), brownAsteroid.Width, brownAsteroid.Height);
         }
+
 
 
 
         public void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
-            for (int b_Asteroids = 0; b_Asteroids < brownAsteroidPositions.Count; b_Asteroids++)
-            {
-                Vector2 position = (Vector2)brownAsteroidPositions[b_Asteroids];
-                spriteBatch.Draw(brownAsteroid, position, null, null, brownAsteroidOffset, 0, null, Color.White);
-            }
+            spriteBatch.Draw(brownAsteroid, b_AsteroidPos, null, null, brownAsteroidOffset, 0, null, Color.White);
 
             //spriteBatch.DrawString(font, "Debug: " + randB_AsteroidAngle.ToString(), new Vector2(20, 20), Color.Red);
         }
