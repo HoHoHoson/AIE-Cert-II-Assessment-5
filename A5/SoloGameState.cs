@@ -22,6 +22,7 @@ namespace A5
         public Random random = new Random();
         Projectiles projectiles;
         List<Projectiles> myProjectiles = new List<Projectiles>();
+        List<Projectiles> dedProjectiles = new List<Projectiles>();
         float m_timer;
 
 
@@ -91,26 +92,14 @@ namespace A5
                 }
                 else if (p.b_AsteroidRect.Intersects(Player1.Instance.player1Rect))
                 {
-                    myProjectiles.Remove(p);
+                    dedProjectiles.Add(p);
                 }
             }
 
-
-            //for (int b_Asteroid = 0; b_Asteroid < projectiles.brownAsteroidPositions.Count; b_Asteroid++)
-            //{
-            //    Vector2 position = (Vector2)projectiles.brownAsteroidPositions[b_Asteroid];
-            //    Vector2 velocity = (Vector2)projectiles.brownAsteroidVelocities[b_Asteroid];
-            //    Rectangle b_AsteroidRect = new Rectangle((int)(position.X - projectiles.brownAsteroidOffset.X), (int)(position.Y - projectiles.brownAsteroidOffset.Y), projectiles.brownAsteroid.Width, projectiles.brownAsteroid.Height);
-            //    if (b_AsteroidRect.Intersects(player1.player1Rect) && b_AsteroidRect.Bottom - 2 < player1.player1Rect.Top)
-            //    {
-            //        velocity.Y = -velocity.Y;
-            //        projectiles.brownAsteroidVelocities[b_Asteroid] = velocity;
-            //    }
-            //    else if (b_AsteroidRect.Intersects(player1.player1Rect))
-            //    {
-            //        projectiles.brownAsteroidPositions.RemoveAt(b_Asteroid);
-            //        projectiles.brownAsteroidVelocities.RemoveAt(b_Asteroid);
-            //    }
+            foreach (Projectiles p in dedProjectiles)
+            {
+                myProjectiles.Remove(p);
+            }
         }
     
 
