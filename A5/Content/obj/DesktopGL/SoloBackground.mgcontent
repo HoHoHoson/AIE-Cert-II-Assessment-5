@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/s181702/Documents/Souretree/AIE-Cert-II-Assessment-5/A5/Content/SoloBackground.png</SourceFile>
-  <SourceTime>2018-05-03T20:48:58.0303331+10:00</SourceTime>
-  <DestFile>C:/Users/s181702/Documents/Souretree/AIE-Cert-II-Assessment-5/A5/Content/bin/DesktopGL/SoloBackground.xnb</DestFile>
-  <DestTime>2018-05-15T18:56:51.5947309+10:00</DestTime>
+  <SourceFile>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/SoloBackground.png</SourceFile>
+  <SourceTime>2018-06-05T18:09:32.3796979+10:00</SourceTime>
+  <DestFile>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/bin/DesktopGL/SoloBackground.xnb</DestFile>
+  <DestTime>2018-06-05T18:10:18.9172799+10:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-01-31T18:47:42+11:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

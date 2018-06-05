@@ -82,6 +82,7 @@ namespace A5
                 m_timer = 0.0f;
             }
 
+
             foreach (Projectiles p in myProjectiles)
             {
                 p.Update(deltaTime);
@@ -96,10 +97,30 @@ namespace A5
                 }
             }
 
+            for (int i = 0; i < myProjectiles.Count - 1; i++)
+            {
+                var asteroid1 = myProjectiles[i];
+                Circle asteroid1Rect = asteroid1.b_AsteroidCircle;
+
+                for (int j = i + 1; j < myProjectiles.Count; j++)
+                {
+                    var asteroid2 = myProjectiles[j];
+                    Circle asteroid2Rect = asteroid2.b_AsteroidCircle;
+
+                    if (asteroid1Rect.Intersects(asteroid2Rect))
+                    {
+                        dedProjectiles.Add(asteroid1);
+                        dedProjectiles.Add(asteroid2);
+                    }
+                }
+            }
+
             foreach (Projectiles p in dedProjectiles)
             {
                 myProjectiles.Remove(p);
             }
+            myProjectiles.RemoveAll(projectiles => projectiles.randB_AsteroidSpawn.Y > Game1.Instance.ScreenHeight + projectiles.brownAsteroid.Height);
+            myProjectiles.RemoveAll(projectiles => projectiles.randB_AsteroidSpawn.Y < (0 - projectiles.brownAsteroid.Height * 2));
         }
     
 

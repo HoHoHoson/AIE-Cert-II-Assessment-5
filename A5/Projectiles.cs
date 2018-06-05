@@ -20,6 +20,7 @@ namespace A5
         public Vector2 spawnVelocity = Vector2.Zero;
         public Texture2D brownAsteroid;
         public Rectangle b_AsteroidRect;
+        public Circle b_AsteroidCircle;
         public int asteroidCount = 10;
 
 
@@ -52,6 +53,7 @@ namespace A5
             }
 
             b_AsteroidRect = new Rectangle((int)(b_AsteroidPos.X - brownAsteroidOffset.X), (int)(b_AsteroidPos.Y - brownAsteroidOffset.Y), brownAsteroid.Width, brownAsteroid.Height);
+            b_AsteroidCircle = new Circle((b_AsteroidPos - brownAsteroidOffset), (brownAsteroid.Width / 2));
         }
 
 

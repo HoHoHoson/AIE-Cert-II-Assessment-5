@@ -4,9 +4,9 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/s181702/Documents/Souretree/AIE-Cert-II-Assessment-5/A5/Content/Arial.spritefont</File>
-    <File>C:/Users/s181702/Documents/Souretree/AIE-Cert-II-Assessment-5/A5/Content/buttonBlue.png</File>
-    <File>C:/Users/s181702/Documents/Souretree/AIE-Cert-II-Assessment-5/A5/Content/SoloBackground.png</File>
-    <File>C:/Users/s181702/Documents/Souretree/AIE-Cert-II-Assessment-5/A5/Content/meteorBrown.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/Arial.spritefont</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/buttonBlue.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/SoloBackground.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/meteorBrown.png</File>
   </SourceFiles>
 </SourceFileCollection>
