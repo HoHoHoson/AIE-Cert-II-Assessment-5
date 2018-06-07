@@ -13,17 +13,20 @@ namespace A5
 {
     public class SoloGameState : A5.State
     {
-        static SoloGameState instance;
         bool isLoaded = false;
-        SpriteFont arial = null;
-        Player1 player1 = null;
-        Texture2D background = null;
+        bool endGame = false;
         Game1 game = null;
-        public Random random = new Random();
+        Player1 player1 = null;
         Projectiles projectiles;
         List<Projectiles> myProjectiles = new List<Projectiles>();
         List<Projectiles> dedProjectiles = new List<Projectiles>();
-        float m_timer;
+        static SoloGameState instance;
+        SpriteFont arial = null;
+        Texture2D background = null;
+        public Random random = new Random();
+        float m_timer = 0f;
+        float progressiveTimer = 0f;
+        float b_AsteroidSpeed = 1f;
 
 
 
@@ -44,6 +47,7 @@ namespace A5
             this.game = game;
             player1 = new Player1(game);
             projectiles = new Projectiles();
+            player1.playerSprite.position.X = Game1.Instance.ScreenWidth / 2;
         }
 
 
@@ -64,20 +68,26 @@ namespace A5
             }
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            m_timer += deltaTime;
             player1.Update(deltaTime);
 
+            progressiveTimer += deltaTime;
+            if (progressiveTimer >= 5f)
+            {
+                progressiveTimer = 0;
+                b_AsteroidSpeed += 0.1f;
+            }
 
+            m_timer += deltaTime;
             if (m_timer >= 1.0f)
             {
                 projectiles = new Projectiles();
                 projectiles.Load(Content);
-                projectiles.randB_AsteroidSpawn = new Vector2(random.Next(0 + projectiles.brownAsteroid.Width, Game1.Instance.ScreenWidth - projectiles.brownAsteroid.Width), 0 - projectiles.brownAsteroid.Height);
+                projectiles.randB_AsteroidSpawn = new Vector2(random.Next(0 + projectiles.b_AsteroidSprite.texture.Width, Game1.Instance.ScreenWidth - projectiles.b_AsteroidSprite.texture.Width), 0 - projectiles.b_AsteroidSprite.texture.Height);
                 double randomNumber = (float)random.NextDouble();
                 float randB_AsteroidAngle = MathHelper.Lerp(-1.3f, +1.3f, (float)randomNumber);
                 Vector2 B_AsteroidDirection = new Vector2(-(float)Math.Sin(randB_AsteroidAngle), (float)Math.Cos(randB_AsteroidAngle));
                 B_AsteroidDirection.Normalize();
-                projectiles.spawnVelocity = B_AsteroidDirection * 1;
+                projectiles.spawnVelocity = B_AsteroidDirection * b_AsteroidSpeed;
                 myProjectiles.Add(projectiles);
                 m_timer = 0.0f;
             }
@@ -95,8 +105,13 @@ namespace A5
                 {
                     dedProjectiles.Add(p);
                 }
-            }
 
+                if (p.randB_AsteroidSpawn.Y > Game1.Instance.ScreenHeight + p.b_AsteroidSprite.texture.Height)
+                {
+                    endGame = true;
+                }
+            }
+            
             for (int i = 0; i < myProjectiles.Count - 1; i++)
             {
                 var asteroid1 = myProjectiles[i];
@@ -119,8 +134,18 @@ namespace A5
             {
                 myProjectiles.Remove(p);
             }
-            myProjectiles.RemoveAll(projectiles => projectiles.randB_AsteroidSpawn.Y > Game1.Instance.ScreenHeight + projectiles.brownAsteroid.Height);
-            myProjectiles.RemoveAll(projectiles => projectiles.randB_AsteroidSpawn.Y < (0 - projectiles.brownAsteroid.Height * 2));
+            myProjectiles.RemoveAll(projectiles => projectiles.randB_AsteroidSpawn.Y > Game1.Instance.ScreenHeight + projectiles.b_AsteroidSprite.texture.Height);
+            myProjectiles.RemoveAll(projectiles => projectiles.randB_AsteroidSpawn.Y < (0 - projectiles.b_AsteroidSprite.texture.Height * 2));
+
+            if (endGame == true)
+            {
+                endGame = false;
+                StateManager.ChangeState("Solo GameOver");
+                myProjectiles.Clear();
+                dedProjectiles.Clear();
+                m_timer = 0f;
+                player1.playerSprite.position.X = Game1.Instance.ScreenWidth / 2;
+            }
         }
     
 

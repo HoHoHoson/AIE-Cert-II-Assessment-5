@@ -27,6 +27,7 @@ namespace A5
         public void Load (ContentManager content, string asset)
         {
             texture = content.Load<Texture2D>(asset);
+            offset = new Vector2(texture.Width / 2, texture.Height / 2);
         }
 
 
@@ -39,7 +40,7 @@ namespace A5
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position + offset, Color.White);
+            spriteBatch.Draw(texture, position - offset, Color.White);
         }
     }
 }

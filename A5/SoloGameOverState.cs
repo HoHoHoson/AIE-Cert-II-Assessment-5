@@ -12,6 +12,8 @@ namespace A5
     public class SoloGameOverState : A5.State
     {
         bool isLoaded = false;
+        float countDown = 5.4f;
+        SpriteFont arial;
 
 
 
@@ -26,6 +28,16 @@ namespace A5
             if (isLoaded == false)
             {
                 isLoaded = true;
+                arial = Content.Load<SpriteFont>("Arial");
+            }
+
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            countDown -= deltaTime;
+
+            if (countDown <= 0)
+            {
+                countDown = 5.4f;
+                StateManager.ChangeState("Solo Game");
             }
         }
 
@@ -33,7 +45,12 @@ namespace A5
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            Vector2 size = arial.MeasureString("GAME OVER");
+            Vector2 count = arial.MeasureString("Retry in " + countDown.ToString("0"));
+
             spriteBatch.Begin();
+            spriteBatch.DrawString(arial, "GAME OVER", new Vector2(Game1.Instance.ScreenWidth / 2 - size.X / 2, Game1.Instance.ScreenHeight / 2 - size.Y /  2), Color.Red);
+            spriteBatch.DrawString(arial, "Retry in " + countDown.ToString("0"), new Vector2(Game1.Instance.ScreenWidth / 2 - count.X / 2, Game1.Instance.ScreenHeight / 2  - count.Y / 2 + size.Y), Color.Red);
             spriteBatch.End();
         }
 

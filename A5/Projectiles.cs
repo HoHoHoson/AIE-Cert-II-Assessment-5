@@ -14,14 +14,11 @@ namespace A5
 {
     class Projectiles
     {
-        Vector2 b_AsteroidPos = Vector2.Zero;
-        public Vector2 brownAsteroidOffset = Vector2.Zero;
+        public Sprite b_AsteroidSprite = new Sprite();
         public Vector2 randB_AsteroidSpawn = Vector2.Zero;
         public Vector2 spawnVelocity = Vector2.Zero;
-        public Texture2D brownAsteroid;
         public Rectangle b_AsteroidRect;
         public Circle b_AsteroidCircle;
-        public int asteroidCount = 10;
 
 
 
@@ -35,8 +32,7 @@ namespace A5
 
         public void Load(ContentManager content)
         {
-            brownAsteroid = content.Load<Texture2D>("meteorBrown");
-            brownAsteroidOffset = new Vector2(brownAsteroid.Width / 2, brownAsteroid.Height / 2);
+            b_AsteroidSprite.Load(content, "meteorBrown");
         }
 
 
@@ -45,15 +41,15 @@ namespace A5
         public void Update(float deltaTime)
         {
             randB_AsteroidSpawn += spawnVelocity;
-            b_AsteroidPos = randB_AsteroidSpawn;
+            b_AsteroidSprite.position = randB_AsteroidSpawn;
 
-            if (b_AsteroidPos.X - brownAsteroid.Width / 2 < 0 && spawnVelocity.X < 0 || b_AsteroidPos.X + brownAsteroid.Width / 2 > Game1.Instance.ScreenWidth && spawnVelocity.X > 0)
+            if (b_AsteroidSprite.position.X - b_AsteroidSprite.texture.Width / 2 < 0 && spawnVelocity.X < 0 || b_AsteroidSprite.position.X + b_AsteroidSprite.texture.Width / 2 > Game1.Instance.ScreenWidth && spawnVelocity.X > 0)
             {
                 spawnVelocity.X = -spawnVelocity.X;
             }
 
-            b_AsteroidRect = new Rectangle((int)(b_AsteroidPos.X - brownAsteroidOffset.X), (int)(b_AsteroidPos.Y - brownAsteroidOffset.Y), brownAsteroid.Width, brownAsteroid.Height);
-            b_AsteroidCircle = new Circle((b_AsteroidPos - brownAsteroidOffset), (brownAsteroid.Width / 2));
+            b_AsteroidRect = new Rectangle((int)(b_AsteroidSprite.position.X - b_AsteroidSprite.offset.X), (int)(b_AsteroidSprite.position.Y - b_AsteroidSprite.offset.Y), b_AsteroidSprite.texture.Width, b_AsteroidSprite.texture.Height);
+            b_AsteroidCircle = new Circle((b_AsteroidSprite.position - b_AsteroidSprite.offset), (b_AsteroidSprite.texture.Width / 2));
         }
 
 
@@ -61,7 +57,7 @@ namespace A5
 
         public void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
-            spriteBatch.Draw(brownAsteroid, b_AsteroidPos, null, null, brownAsteroidOffset, 0, null, Color.White);
+            spriteBatch.Draw(b_AsteroidSprite.texture, b_AsteroidSprite.position, null, null, b_AsteroidSprite.offset, 0, null, Color.White);
 
             //spriteBatch.DrawString(font, "Debug: " + randB_AsteroidAngle.ToString(), new Vector2(20, 20), Color.Red);
         }
