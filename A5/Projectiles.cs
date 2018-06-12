@@ -19,6 +19,7 @@ namespace A5
         public Vector2 spawnVelocity = Vector2.Zero;
         public Rectangle b_AsteroidRect;
         public Circle b_AsteroidCircle;
+        public bool rebound = false;
 
 
 

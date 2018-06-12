@@ -56,3 +56,21 @@
 /processorParam:TextureFormat=Color
 /build:meteorBrown.png
 
+#begin A5_Solo_Music.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:A5_Solo_Music.wav
+
+#begin explodemini.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:explodemini.wav
+
+#begin bigExplosion.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:bigExplosion.wav
+

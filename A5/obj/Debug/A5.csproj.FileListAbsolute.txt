@@ -60,3 +60,6 @@ L:\SourceTree\AIE-Cert-II-Assessment-5\A5\obj\Debug\A5.csprojResolveAssemblyRefe
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\obj\Debug\A5.csproj.CoreCompileInputs.cache
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\obj\Debug\A5.exe
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\obj\Debug\A5.pdb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\A5_Solo_Music.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\explodemini.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\bigExplosion.xnb
