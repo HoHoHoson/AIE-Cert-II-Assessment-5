@@ -50,7 +50,6 @@ L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\Arial.xnb
-L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\buttonBlue.xnb
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\meteorBrown.xnb
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\SoloBackground.xnb
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\A5.exe
@@ -63,3 +62,12 @@ L:\SourceTree\AIE-Cert-II-Assessment-5\A5\obj\Debug\A5.pdb
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\A5_Solo_Music.xnb
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\explodemini.xnb
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\bigExplosion.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\stateBlue.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\stateGreen.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\stateRed.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\stateYellow.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\shieldUp.ogg
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\shieldUp.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\rebound.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\shieldDown.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\DesktopGL\AnyCPU\Debug\Content\playerDestroyed.xnb

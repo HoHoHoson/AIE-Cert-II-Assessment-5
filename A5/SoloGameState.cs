@@ -21,13 +21,21 @@ namespace A5
         Projectiles projectiles;
         List<Projectiles> myProjectiles = new List<Projectiles>();
         List<Projectiles> dedProjectiles = new List<Projectiles>();
+        Sprite healthBlue = new Sprite();
+        Sprite healthGreen = new Sprite();
+        Sprite healthYellow = new Sprite();
+        Sprite healthRed = new Sprite();
         SpriteFont arial = null;
         Texture2D background = null;
         Audio gameMusic = new Audio();
         Audio miniExplosion = new Audio();
         Audio deathExplosion = new Audio();
+        Audio playerExplosion = new Audio();
+        Audio shieldUp = new Audio();
+        Audio shieldDown = new Audio();
+        Audio rebound = new Audio();
         public Random random = new Random();
-        int playerHealth = 3;
+        int playerHealth = 4;
         float m_timer = 0f;
         float progressiveTimer = 0f;
         float b_AsteroidSpeed = 1f;
@@ -65,20 +73,35 @@ namespace A5
                 player1.Load(content);
                 arial = content.Load<SpriteFont>("Arial");
                 background = content.Load<Texture2D>("SoloBackground");
+                healthBlue.Load(content, "stateBlue");
+                healthGreen.Load(content, "stateGreen");
+                healthYellow.Load(content, "stateYellow");
+                healthRed.Load(content, "stateRed");
                 gameMusic.Load(content, "A5_Solo_Music");
                 miniExplosion.Load(content, "explodemini");
                 deathExplosion.Load(content, "bigExplosion");
+                playerExplosion.Load(content, "playerDestroyed");
+                shieldUp.Load(content, "shieldUp");
+                shieldDown.Load(content, "shieldDown");
+                rebound.Load(content, "rebound");
                 foreach (var p in myProjectiles)
                 {
                     p.Load(content);
                 }
 
                 gameMusic.soundInstance.IsLooped = true;
+                gameMusic.soundInstance.Volume = 1f;
                 gameMusic.soundInstance.Play();
+                shieldDown.soundInstance.IsLooped = true;
             }
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             player1.Update(deltaTime);
+
+            healthBlue.position = player1.playerSprite.position;
+            healthGreen.position = player1.playerSprite.position;
+            healthYellow.position = player1.playerSprite.position;
+            healthRed.position = player1.playerSprite.position;
 
             progressiveTimer += deltaTime;
             if (progressiveTimer >= 5f)
@@ -107,15 +130,26 @@ namespace A5
             {
                 p.Update(deltaTime);
 
-                if (p.b_AsteroidRect.Intersects(Player1.Instance.player1Rect) && p.b_AsteroidRect.Bottom - 9999 < Player1.Instance.player1Rect.Top && p.rebound == false)
+                if (!(playerHealth <= 0))
                 {
-                    p.rebound = true;
-                    p.spawnVelocity.Y = -p.spawnVelocity.Y;
-                }
-                else if (p.b_AsteroidRect.Intersects(Player1.Instance.player1Rect))
-                {
-                    dedProjectiles.Add(p);
-                    miniExplosion.sound.Play();
+                    if (p.b_AsteroidRect.Intersects(Player1.Instance.player1Rect) && p.b_AsteroidRect.Bottom - b_AsteroidSpeed - 1 < Player1.Instance.player1Rect.Top && p.rebound == false)
+                    {
+                        p.rebound = true;
+                        rebound.sound.Play();
+                        p.spawnVelocity.Y = -p.spawnVelocity.Y;
+                        if (playerHealth < 4)
+                        {
+                            playerHealth += 1;
+                            shieldUp.sound.Play();
+                        }
+                        else playerHealth = 4;
+                    }
+                    else if (p.b_AsteroidRect.Intersects(Player1.Instance.player1Rect))
+                    {
+                        dedProjectiles.Add(p);
+                        miniExplosion.sound.Play();
+                        playerHealth -= 1;
+                    }
                 }
 
                 if (p.randB_AsteroidSpawn.Y > Game1.Instance.ScreenHeight + p.b_AsteroidSprite.texture.Height)
@@ -150,18 +184,24 @@ namespace A5
             myProjectiles.RemoveAll(projectiles => projectiles.randB_AsteroidSpawn.Y > Game1.Instance.ScreenHeight + projectiles.b_AsteroidSprite.texture.Height);
             myProjectiles.RemoveAll(projectiles => projectiles.randB_AsteroidSpawn.Y < (0 - projectiles.b_AsteroidSprite.texture.Height * 2));
 
+            if (playerHealth == 1)
+                shieldDown.soundInstance.Play();
+            else shieldDown.soundInstance.Stop();
+
             if (endGame == true)
             {
                 endGame = false;
                 isLoaded = false;
                 StateManager.ChangeState("Solo GameOver");
                 gameMusic.soundInstance.Stop();
+                shieldDown.soundInstance.Stop();
                 deathExplosion.soundInstance.Play();
                 myProjectiles.Clear();
                 dedProjectiles.Clear();
                 player1.playerSprite.position.X = Game1.Instance.ScreenWidth / 2;
                 m_timer = 0f;
                 b_AsteroidSpeed = 1f;
+                playerHealth = 4;
             }
         }
     
@@ -172,22 +212,22 @@ namespace A5
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
             spriteBatch.Draw(background, new Rectangle(0, 0, Game1.Instance.ScreenWidth, Game1.Instance.ScreenHeight), Color.White);
-            player1.Draw(spriteBatch);
             switch (playerHealth)
             {
-                case 0:
-
-                    break;
                 case 1:
-
+                    healthRed.Draw(spriteBatch);
                     break;
                 case 2:
-
+                    healthYellow.Draw(spriteBatch);
                     break;
                 case 3:
-
+                    healthGreen.Draw(spriteBatch);
+                    break;
+                case 4:
+                    player1.Draw(spriteBatch);
                     break;
                 default:
+                    playerExplosion.soundInstance.Play();
                     break;
             }
             foreach (Projectiles p in myProjectiles)

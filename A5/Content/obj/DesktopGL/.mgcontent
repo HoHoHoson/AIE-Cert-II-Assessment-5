@@ -5,11 +5,18 @@
   <Config />
   <SourceFiles>
     <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/Arial.spritefont</File>
-    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/buttonBlue.png</File>
     <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/SoloBackground.png</File>
     <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/meteorBrown.png</File>
     <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/A5_Solo_Music.wav</File>
     <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/explodemini.wav</File>
     <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/bigExplosion.wav</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/stateBlue.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/stateYellow.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/stateRed.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/stateGreen.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/shieldUp.wav</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/rebound.wav</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/shieldDown.wav</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/playerDestroyed.wav</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -40,7 +40,7 @@ namespace A5
 
         public void Load(ContentManager content)
         {
-            playerSprite.Load(content, "buttonBlue");
+            playerSprite.Load(content, "stateBlue");
         }
 
 

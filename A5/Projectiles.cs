@@ -58,7 +58,7 @@ namespace A5
 
         public void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
-            spriteBatch.Draw(b_AsteroidSprite.texture, b_AsteroidSprite.position, null, null, b_AsteroidSprite.offset, 0, null, Color.White);
+            b_AsteroidSprite.Draw(spriteBatch);
 
             //spriteBatch.DrawString(font, "Debug: " + randB_AsteroidAngle.ToString(), new Vector2(20, 20), Color.Red);
         }
