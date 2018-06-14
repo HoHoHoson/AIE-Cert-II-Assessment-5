@@ -37,6 +37,7 @@ namespace A5
         public Random random = new Random();
         int playerHealth = 4;
         float m_timer = 0f;
+        float progressiveSpawn = 1f;
         float progressiveTimer = 0f;
         float b_AsteroidSpeed = 1f;
 
@@ -104,14 +105,16 @@ namespace A5
             healthRed.position = player1.playerSprite.position;
 
             progressiveTimer += deltaTime;
-            if (progressiveTimer >= 5f)
+            if (progressiveTimer >= 2f)
             {
                 progressiveTimer = 0;
                 b_AsteroidSpeed += 0.1f;
+                if (progressiveSpawn != 0.5f)
+                    progressiveSpawn -= 0.01f;
             }
 
             m_timer += deltaTime;
-            if (m_timer >= 1.0f)
+            if (m_timer >= progressiveSpawn)
             {
                 projectiles = new Projectiles();
                 projectiles.Load(content);
@@ -199,6 +202,8 @@ namespace A5
                 myProjectiles.Clear();
                 dedProjectiles.Clear();
                 player1.playerSprite.position.X = Game1.Instance.ScreenWidth / 2;
+                progressiveTimer = 0f;
+                progressiveSpawn = 1.0f;
                 m_timer = 0f;
                 b_AsteroidSpeed = 1f;
                 playerHealth = 4;

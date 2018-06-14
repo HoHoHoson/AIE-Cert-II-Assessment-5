@@ -59,7 +59,7 @@ namespace A5
             StateManager.CreateState("Menu", new MenuState());
             StateManager.CreateState("Solo GameOver", new SoloGameOverState());
 
-            StateManager.PushState("Solo Game");
+            StateManager.PushState("Splash");
         }
 
         /// <summary>
