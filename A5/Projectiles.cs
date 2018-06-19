@@ -42,15 +42,15 @@ namespace A5
         public void Update(float deltaTime)
         {
             randB_AsteroidSpawn += spawnVelocity;
-            b_AsteroidSprite.position = randB_AsteroidSpawn;
+            b_AsteroidSprite.origin = randB_AsteroidSpawn;
 
-            if (b_AsteroidSprite.position.X - b_AsteroidSprite.texture.Width / 2 < 0 && spawnVelocity.X < 0 || b_AsteroidSprite.position.X + b_AsteroidSprite.texture.Width / 2 > Game1.Instance.ScreenWidth && spawnVelocity.X > 0)
+            if (b_AsteroidSprite.origin.X - b_AsteroidSprite.texture.Width / 2 < 0 && spawnVelocity.X < 0 || b_AsteroidSprite.origin.X + b_AsteroidSprite.texture.Width / 2 > Game1.Instance.ScreenWidth && spawnVelocity.X > 0)
             {
                 spawnVelocity.X = -spawnVelocity.X;
             }
 
-            b_AsteroidRect = new Rectangle((int)(b_AsteroidSprite.position.X - b_AsteroidSprite.offset.X), (int)(b_AsteroidSprite.position.Y - b_AsteroidSprite.offset.Y), b_AsteroidSprite.texture.Width, b_AsteroidSprite.texture.Height);
-            b_AsteroidCircle = new Circle((b_AsteroidSprite.position - b_AsteroidSprite.offset), (b_AsteroidSprite.texture.Width / 2));
+            b_AsteroidRect = new Rectangle((int)(b_AsteroidSprite.origin.X - b_AsteroidSprite.offset.X), (int)(b_AsteroidSprite.origin.Y - b_AsteroidSprite.offset.Y), b_AsteroidSprite.texture.Width, b_AsteroidSprite.texture.Height);
+            b_AsteroidCircle = new Circle((b_AsteroidSprite.origin - b_AsteroidSprite.offset), (b_AsteroidSprite.texture.Width / 2));
         }
 
 

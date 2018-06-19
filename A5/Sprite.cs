@@ -11,8 +11,9 @@ namespace A5
 {
     class Sprite
     {
-        public Vector2 position = Vector2.Zero;
+        public Vector2 origin = Vector2.Zero;
         public Vector2 offset = Vector2.Zero;
+        public Vector2 position = Vector2.Zero;
 
         public Texture2D texture;
 
@@ -28,6 +29,7 @@ namespace A5
         {
             texture = content.Load<Texture2D>(asset);
             offset = new Vector2(texture.Width / 2, texture.Height / 2);
+            position = origin - offset;
         }
 
 
@@ -40,7 +42,7 @@ namespace A5
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position - offset, Color.White);
+            spriteBatch.Draw(texture, origin - offset, Color.White);
         }
     }
 }

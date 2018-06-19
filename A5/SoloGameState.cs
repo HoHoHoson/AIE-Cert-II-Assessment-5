@@ -15,7 +15,6 @@ namespace A5
     {
         bool isLoaded = false;
         bool endGame = false;
-        static SoloGameState instance;
         Game1 game = null;
         Player1 player1 = null;
         Projectiles projectiles;
@@ -43,26 +42,13 @@ namespace A5
 
 
 
-
-        public static SoloGameState Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
-
-
-
-
         public SoloGameState(Game1 game) : base()
         {
             this.game = game;
             player1 = new Player1(game);
             projectiles = new Projectiles();
-            player1.playerSprite.position.X = Game1.Instance.ScreenWidth / 2;
+            player1.playerSprite.origin.X = Game1.Instance.ScreenWidth / 2;
         }
-
 
 
 
@@ -99,10 +85,10 @@ namespace A5
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             player1.Update(deltaTime);
 
-            healthBlue.position = player1.playerSprite.position;
-            healthGreen.position = player1.playerSprite.position;
-            healthYellow.position = player1.playerSprite.position;
-            healthRed.position = player1.playerSprite.position;
+            healthBlue.origin = player1.playerSprite.origin;
+            healthGreen.origin = player1.playerSprite.origin;
+            healthYellow.origin = player1.playerSprite.origin;
+            healthRed.origin = player1.playerSprite.origin;
 
             progressiveTimer += deltaTime;
             if (progressiveTimer >= 2f)
@@ -201,7 +187,7 @@ namespace A5
                 deathExplosion.soundInstance.Play();
                 myProjectiles.Clear();
                 dedProjectiles.Clear();
-                player1.playerSprite.position.X = Game1.Instance.ScreenWidth / 2;
+                player1.playerSprite.origin.X = Game1.Instance.ScreenWidth / 2;
                 progressiveTimer = 0f;
                 progressiveSpawn = 1.0f;
                 m_timer = 0f;
@@ -210,7 +196,6 @@ namespace A5
             }
         }
     
-
 
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -241,7 +226,6 @@ namespace A5
             }
             spriteBatch.End();
         }
-
 
 
 

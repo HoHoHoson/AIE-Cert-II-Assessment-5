@@ -38,7 +38,7 @@ namespace A5
             }
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             splashTimer += deltaTime;
-            MathHelper.Clamp(alpha, 0f, 1f);
+            alpha = MathHelper.Clamp(alpha, 0f, 1f);
             if (Keyboard.GetState().GetPressedKeys().Length > 0)
                 StateManager.ChangeState("Menu");
             if (splashTimer >= 0.5f && splashTimer <= 5.5f)

@@ -72,11 +72,11 @@ namespace A5
                 acceleration = 0f;
             }
 
-            playerSprite.position.X += acceleration;
-            playerSprite.position.X = MathHelper.Clamp(playerSprite.position.X, 0 + playerSprite.texture.Width / 2, game1.ScreenWidth - playerSprite.texture.Width / 2);
+            playerSprite.origin.X += acceleration;
+            playerSprite.origin.X = MathHelper.Clamp(playerSprite.origin.X, 0 + playerSprite.texture.Width / 2, game1.ScreenWidth - playerSprite.texture.Width / 2);
             acceleration = MathHelper.Clamp(acceleration, -10, 10);
-            playerSprite.position.Y = game1.ScreenHeight - playerSprite.texture.Height - 10;
-            player1Rect = new Rectangle((int)(playerSprite.position.X - playerSprite.offset.X), (int)(playerSprite.position.Y - playerSprite.offset.Y), playerSprite.texture.Width, playerSprite.texture.Height);
+            playerSprite.origin.Y = game1.ScreenHeight - playerSprite.texture.Height - 10;
+            player1Rect = new Rectangle((int)(playerSprite.origin.X - playerSprite.offset.X), (int)(playerSprite.origin.Y - playerSprite.offset.Y), playerSprite.texture.Width, playerSprite.texture.Height);
         }
 
 
