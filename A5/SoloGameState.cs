@@ -13,6 +13,7 @@ namespace A5
 {
     public class SoloGameState : A5.State
     {
+        static SoloGameState instance;
         bool isLoaded = false;
         bool endGame = false;
         Game1 game = null;
@@ -33,6 +34,9 @@ namespace A5
         Audio shieldUp = new Audio();
         Audio shieldDown = new Audio();
         Audio rebound = new Audio();
+        public Vector2 timerMeasure = Vector2.Zero;
+        public Vector2 timerPos = Vector2.Zero;
+        public float gameTimer = 0f;
         public Random random = new Random();
         int playerHealth = 4;
         float m_timer = 0f;
@@ -42,12 +46,20 @@ namespace A5
 
 
 
+        public static SoloGameState Instance
+        {
+            get { return instance; }
+        }
+
+
+
         public SoloGameState(Game1 game) : base()
         {
             this.game = game;
             player1 = new Player1(game);
             projectiles = new Projectiles();
             player1.playerSprite.origin.X = Game1.Instance.ScreenWidth / 2;
+            instance = this;
         }
 
 
@@ -89,6 +101,10 @@ namespace A5
             healthGreen.origin = player1.playerSprite.origin;
             healthYellow.origin = player1.playerSprite.origin;
             healthRed.origin = player1.playerSprite.origin;
+
+            gameTimer += deltaTime;
+            timerMeasure = arial.MeasureString(gameTimer.ToString("##0"));
+            timerPos = new Vector2(Game1.Instance.ScreenWidth / 2 - timerMeasure.X / 2, Game1.Instance.ScreenHeight * 0.05f - timerMeasure.Y / 2);
 
             progressiveTimer += deltaTime;
             if (progressiveTimer >= 2f)
@@ -141,7 +157,7 @@ namespace A5
                     }
                 }
 
-                if (p.randB_AsteroidSpawn.Y > Game1.Instance.ScreenHeight + p.b_AsteroidSprite.texture.Height)
+                if (p.randB_AsteroidSpawn.Y > Game1.Instance.ScreenHeight + p.b_AsteroidSprite.texture.Height || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 {
                     endGame = true;
                 }
@@ -224,6 +240,7 @@ namespace A5
             {
                 p.Draw(spriteBatch, arial);
             }
+            spriteBatch.DrawString(arial, gameTimer.ToString("##0"), timerPos, Color.White);
             spriteBatch.End();
         }
 

@@ -17,8 +17,8 @@ namespace A5
         Texture2D back;
         Sprite star = new Sprite();
         SpriteFont arial;
-        Vector2 menuSpacing = new Vector2(0, 35);
-        public Vector2 middle = Vector2.Zero;
+        public Vector2 menuSpacing = new Vector2(0, 35);
+        Vector2 middle = Vector2.Zero;
         Vector2 title = Vector2.Zero;
         Vector2 titleMeasure = Vector2.Zero;
         Vector2 solo = Vector2.Zero;
@@ -32,8 +32,8 @@ namespace A5
         KeyboardState previousState;
         Audio menuMusic = new Audio();
         int menuCursor = 1;
-        float titleAlpha;
-        float alpha;
+        float titleAlpha = 0f;
+        float alpha = 0f;
 
 
 
@@ -62,7 +62,7 @@ namespace A5
                 back = content.Load<Texture2D>("back");
                 star.Load(content, "starSelector");
                 arial = content.Load<SpriteFont>("Arial");
-                titleMeasure = (arial.MeasureString("[Name of the Game Here]"));
+                titleMeasure = (arial.MeasureString("A5"));
                 title = new Vector2(middle.X - titleMeasure.X / 2, middle.Y - titleMeasure.Y / 2);
                 soloMeasure = (arial.MeasureString("Solo"));
                 solo = new Vector2(middle.X - soloMeasure.X / 2, middle.Y - soloMeasure.Y / 2) - menuSpacing;
@@ -71,10 +71,12 @@ namespace A5
                 quitMeasure = (arial.MeasureString("Quit"));
                 quit = new Vector2(middle.X - quitMeasure.X / 2, middle.Y - quitMeasure.Y / 2) + menuSpacing;
                 menuMusic.Load(content, "A5_Menu_Music");
-                titleAlpha = 0f;
-                alpha = 0f;
                 menuMusic.soundInstance.IsLooped = true;
                 menuMusic.soundInstance.Play();
+                previousState = Keyboard.GetState();
+                menuCursor = 1;
+                titleAlpha = 0f;
+                alpha = 0f;
             }
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -92,14 +94,15 @@ namespace A5
                 menuCursor -= 1;
             if (currentState.IsKeyDown(Keys.Down) && previousState.IsKeyUp(Keys.Down) || currentState.IsKeyDown(Keys.S) && previousState.IsKeyUp(Keys.S))
                 menuCursor += 1;
-            if (alpha >= 1f)
+            if (alpha >= 0.25f)
             {
                 switch (menuCursor)
                 {
                 case 1:
                     starPos = solo - star.offset + new Vector2(-star.texture.Width, soloMeasure.Y / 2);
-                        if (currentState.IsKeyDown(Keys.Enter))
+                        if (currentState.IsKeyDown(Keys.Enter) && previousState.IsKeyDown(Keys.Enter))
                         {
+                            isLoaded = false;
                             StateManager.ChangeState("Solo Game");
                             menuMusic.soundInstance.Stop();
                         }
@@ -127,11 +130,11 @@ namespace A5
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
             spriteBatch.Draw(back, new Rectangle(0, 0, Game1.Instance.ScreenWidth, Game1.Instance.ScreenHeight), Color.White);
-            spriteBatch.DrawString(arial, "[Name of the Game Here]", title, Color.White * titleAlpha);
+            spriteBatch.DrawString(arial, "A5", title, Color.White * titleAlpha);
             spriteBatch.DrawString(arial, "Solo", solo, Color.White * alpha);
             spriteBatch.DrawString(arial, "Versus", versus, Color.White * alpha);
             spriteBatch.DrawString(arial, "Quit", quit, Color.White * alpha);
-            if (alpha >= 1)
+            if (alpha >= 0.25f)
             spriteBatch.Draw(star.texture, starPos , Color.White);
             spriteBatch.End();
         }

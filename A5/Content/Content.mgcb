@@ -164,3 +164,9 @@
 /processorParam:Quality=Best
 /build:A5_Menu_Music.wav
 
+#begin A5_End_Music.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:A5_End_Music.wav
+
