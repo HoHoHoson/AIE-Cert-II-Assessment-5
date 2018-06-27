@@ -109,7 +109,13 @@ namespace A5
                     break;
                 case 2:
                     starPos = versus - star.offset + new Vector2(-star.texture.Width, versusMeasure.Y / 2);
-                    break;
+                        if (currentState.IsKeyDown(Keys.Enter) && previousState.IsKeyDown(Keys.Enter))
+                        {
+                            isLoaded = false;
+                            StateManager.ChangeState("Versus Game");
+                            menuMusic.soundInstance.Stop();
+                        }
+                        break;
                 default:
                     starPos = quit - star.offset + new Vector2(-star.texture.Width, quitMeasure.Y / 2);
                         if (currentState.IsKeyDown(Keys.Enter))

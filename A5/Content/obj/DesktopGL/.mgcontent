@@ -22,5 +22,15 @@
     <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/starSelector.png</File>
     <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/A5_Menu_Music.wav</File>
     <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/A5_End_Music.wav</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/Textures/down.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/Textures/GameOverBG.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/Textures/stars.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/Textures/VersusBackground.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/buttonRed.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/stars.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/VersusBackground.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/versusProjectile.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/buttonBlue.png</File>
+    <File>L:/SourceTree/AIE-Cert-II-Assessment-5/A5/Content/versusMusic.wav</File>
   </SourceFiles>
 </SourceFileCollection>

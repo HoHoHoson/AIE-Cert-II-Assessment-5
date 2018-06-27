@@ -35,3 +35,13 @@ L:\SourceTree\AIE-Cert-II-Assessment-5\A5\obj\x86\Release\A5.csproj.CoreCompileI
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\obj\x86\Release\A5.exe
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\obj\x86\Release\A5.pdb
 L:\SourceTree\AIE-Cert-II-Assessment-5\A5\obj\x86\Release\A5.csprojResolveAssemblyReference.cache
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\x86\Release\Content\Textures\down.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\x86\Release\Content\Textures\GameOverBG.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\x86\Release\Content\Textures\stars.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\x86\Release\Content\Textures\VersusBackground.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\x86\Release\Content\buttonBlue.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\x86\Release\Content\buttonRed.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\x86\Release\Content\stars.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\x86\Release\Content\VersusBackground.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\x86\Release\Content\versusProjectile.xnb
+L:\SourceTree\AIE-Cert-II-Assessment-5\A5\bin\x86\Release\Content\versusMusic.xnb

@@ -64,7 +64,10 @@
     <Compile Include="Circle.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Player1.cs" />
+    <Compile Include="Player1_vs.cs" />
+    <Compile Include="Player2_vs.cs" />
     <Compile Include="Projectiles.cs" />
+    <Compile Include="Projectiles_vs.cs" />
     <Compile Include="SoloGameState.cs" />
     <Compile Include="MenuState.cs" />
     <Compile Include="Program.cs" />
@@ -73,6 +76,8 @@
     <Compile Include="SplashState.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="StateManager.cs" />
+    <Compile Include="VersusGameOver.cs" />
+    <Compile Include="VersusGameState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
