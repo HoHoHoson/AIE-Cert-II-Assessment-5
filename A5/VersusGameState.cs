@@ -16,8 +16,12 @@ namespace A5
         Game1 Game1 = null;
         Projectiles_vs projectiles;
         Audio bgMusic = new Audio();
-        public static bool p1Wins = false;
+        Audio pong = new Audio();
+        Audio gameOver = new Audio();
+        public static bool p1Wins;
         float startTimer;
+        bool rebound;
+        float reboundTimer;
         
         
 
@@ -47,6 +51,11 @@ namespace A5
                 arial = Content.Load<SpriteFont>("Arial");
                 background = Content.Load<Texture2D>("VersusBackground");
                 startTimer = 0f;
+                reboundTimer = 0f;
+                rebound = false;
+                pong.Load(Content, "shieldUp");
+                gameOver.Load(Content, "bigExplosion");
+                projectiles.velocity = projectiles.direction * 4;
             }
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -67,11 +76,14 @@ namespace A5
             nor.X = bet.Y;
             nor.Y = -bet.X;
             Vector2 newVel = projectiles.GetVelocity() - 2 * Vector2.Dot(projectiles.GetVelocity(), nor) * nor;
-            if (projectiles.b_projectileSphere.Intersects(player1.b_playerBox))
+            if (projectiles.b_projectileSphere.Intersects(player1.b_playerBox) && rebound == false)
             {
+                rebound = true;
                 projectiles.hitPlayer1 = true;
                 projectiles.SetVelocity(newVel);
                 p1Wins = true;
+                pong.sound.Play();
+                projectiles.velocity *= 1.1f;
             }
             Vector2 p2pos1 = new Vector2(player2.playerSprite.origin.X, player2.playerSprite.origin.Y);
             Vector2 p2Pos2 = new Vector2(player2.playerSprite.origin.X + player2.playerSprite.texture.Width, player2.playerSprite.texture.Height + player2.playerSprite.origin.Y);
@@ -82,10 +94,14 @@ namespace A5
             p2Normal.Y = -p2bet.X;
             Vector2 p2newVel = projectiles.GetVelocity() - 2 * Vector2.Dot(projectiles.GetVelocity(), p2Normal) * p2Normal;
 
-            if (player2.b_playerBox.Intersects(projectiles.b_projectileSphere))
+            if (player2.b_playerBox.Intersects(projectiles.b_projectileSphere) && rebound == false)
             {
+                rebound = true;
                 projectiles.hitPlayer1 = true;           
                 projectiles.SetVelocity(p2newVel);
+                p1Wins = false;
+                pong.sound.Play();
+                projectiles.velocity *= 1.05f;
             }
 
             if (projectiles.projSprite.origin.X >= Game1.Instance.ScreenWidth)
@@ -101,6 +117,7 @@ namespace A5
                 normal.Y = -between.X;
                 Vector2 newVelocity = projectiles.GetVelocity() - 2 * Vector2.Dot(projectiles.GetVelocity(), normal) * normal;
                 projectiles.SetVelocity(newVelocity);
+                projectiles.velocity *= 1.05f;
             }
 
             if (projectiles.projSprite.origin.X <= 0)
@@ -116,16 +133,26 @@ namespace A5
                 normal.Y = -between.X;
                 Vector2 newVelocity = projectiles.GetVelocity() - 2 * Vector2.Dot(projectiles.GetVelocity(), normal) * normal;
                 projectiles.SetVelocity(newVelocity);
+                projectiles.velocity *= 1.05f;
             }
 
-            if (projectiles.projSprite.origin.Y + projectiles.projSprite.offset.Y <= 0 || projectiles.projSprite.origin.Y + projectiles.projSprite.offset.Y >= Game1.Instance.ScreenHeight)
+            if (projectiles.projSprite.origin.Y - projectiles.projSprite.offset.Y <= 0 || projectiles.projSprite.origin.Y + projectiles.projSprite.offset.Y >= Game1.Instance.ScreenHeight)
             {
                 StateManager.ChangeState("Versus GameOver");
                 bgMusic.soundInstance.Stop();
                 isLoaded = false;
+                gameOver.soundInstance.Play();
             }
 
-
+            if (rebound == true)
+            {
+                reboundTimer += deltaTime;
+                if (reboundTimer >= 0.3f)
+                {
+                    reboundTimer = 0f;
+                    rebound = false;
+                }
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

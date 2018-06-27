@@ -41,6 +41,7 @@ namespace A5
         public void Load(ContentManager content)
         {
             playerSprite.Load(content, "buttonRed");
+            playerSprite.origin.X = Game1.Instance.ScreenWidth / 2;
         }
 
 

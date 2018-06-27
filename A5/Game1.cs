@@ -61,7 +61,7 @@ namespace A5
             StateManager.CreateState("Versus Game", new VersusGameState(this));
             StateManager.CreateState("Versus GameOver", new VersusGameOver());
 
-            StateManager.PushState("Versus Game");
+            StateManager.PushState("Splash");
         }
 
         /// <summary>

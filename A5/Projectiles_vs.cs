@@ -23,6 +23,8 @@ namespace A5
         public bool hitPlayer2;
         Random rnd = new Random();
         public static int firstDirection;
+        public Vector2 direction;
+
 
 
         public Projectiles_vs(Game1 game)
@@ -48,9 +50,9 @@ namespace A5
 
             if (!hitPlayer1)
             {
-                Vector2 direction = new Vector2(game1.ScreenWidth - firstDirection, game1.ScreenHeight) - projSprite.origin;
+                direction = new Vector2(game1.ScreenWidth - firstDirection, game1.ScreenHeight) - projSprite.origin;
                 direction.Normalize();
-                velocity = direction * 300 * deltaTime;
+                velocity = direction * 4;
             }
             //if (!hitPlayer2)
             //{
